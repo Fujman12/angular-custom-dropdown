@@ -1,0 +1,20 @@
+:host {
+  width: 15px;
+  height: 15px;
+}
+
+svg {
+  width: 15px;
+  height: 15px;
+  &.active {
+    transform: rotate(180deg);
+  }
+  g {
+    path {
+      fill: #507A90;
+      &.active {
+        fill: #F5C44D;
+      }
+    }
+  }
+}

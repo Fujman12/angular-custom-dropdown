@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <div class="container">
+    <app-drop-down
+      [isDisabled]="true"
+      [autocomplete]="true"
+    ></app-drop-down>
+    <app-drop-down
+      [isDisabled]="false"
+      [autocomplete]="true"
+      [data]="autocompleteDropDownData"
+    ></app-drop-down>
+  </div>
+  <div class="container">
+    <app-drop-down
+      [isDisabled]="true"
+      [select]="true"
+    ></app-drop-down>
+    <app-drop-down
+      [isDisabled]="false"
+      [select]="true"
+      [data]="selectDropDownData"
+    ></app-drop-down>
+  </div>
+  <div class="container">
+    <app-drop-down
+      [isDisabled]="true"
+      [checkbox]="true"
+    ></app-drop-down>
+    <app-drop-down
+      [isDisabled]="false"
+      [checkbox]="true"
+      [data]="selectDropDownData"
+    ></app-drop-down>
+  </div>
+  <div class="container checkbox">
+    <app-checkbox [label]="checkboxLabel"></app-checkbox>
+  </div>
+</div>
+

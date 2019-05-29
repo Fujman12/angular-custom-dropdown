@@ -1,0 +1,43 @@
+<div
+  class="drop-down__wrapper"
+  [ngClass]="{disabled: isDisabled, hovered: isHovered, selected: isSelected}"
+  (mouseenter)="mouseEnterHandler()"
+  (mouseleave)="mouseLeaveHandler()"
+>
+  <div class="drop-down__visible" (click)="toggleDropDown()">
+    <p
+      class="drop-down__label"
+      [ngClass]="{selected: isSelected || currentValue.length, hovered: isHovered}"
+    >{{ autocomplete ? 'Autocomplete' : select || checkbox ? 'Dropdown' : 'Autocomplete' }}</p>
+    <span class="drop-down__caret">
+      <app-caret [isDisabled]="isDisabled" [isSelected]="isSelected" [isHovered]="isHovered"></app-caret>
+    </span>
+  </div>
+  <div
+    class="drop-down__list"
+    [ngClass]="{selected: !isSelected && currentValue.length}"
+    *ngIf="isSelected || currentValue.length"
+  >
+    <!-- Input for autocomplete type of dropdown -->
+    <input
+      type="text"
+      class="drop-down__list-item first"
+      (input)="inputHandler($event)"
+      [value]="currentValue"
+      *ngIf="autocomplete"
+      (click)="resetCurrentValue()"
+    >
+    <p
+      class="drop-down__list-item"
+      [ngClass]="{first: !isSelected}"
+      *ngIf="select || checkbox"
+      (click)="toggleDropDown(!isSelected, isSelected ? null : undefined)"
+    >{{ isSelected && currentValue.length ? 'Select none' : currentValue }}</p>
+    <p
+      *ngFor="let item of data | filter:currentValue:autocomplete:initialData"
+      class="drop-down__list-item"
+      [ngClass]="{active: false, checkbox: checkbox, checked: currentValue.includes(item)}"
+      (click)="toggleDropDown(checkbox, item)"
+    >{{ item }}</p>
+  </div>
+</div>
